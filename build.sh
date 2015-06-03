@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-if [ -z "$DOCKER_VERSION" ]; then
+if [ ! -z "$DOCKER_VERSION" ]; then
 	echo deb http://get.docker.com/ubuntu docker main > /etc/apt/sources.list.d/docker.list
 	apt-key adv --keyserver pgp.mit.edu --recv-keys 36A1D7869245C8950F966E92D8576A8BA88D21E9
 	apt-get update
