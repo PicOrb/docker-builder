@@ -27,6 +27,11 @@ else
 	echo "   WARNING: no \$USERNAME/\$PASSWORD or \$DOCKERCFG found - unable to load any credentials for pushing/pulling"
 fi
 
+echo "=> Adding SSH key"
+if [ -f /.ssh/id_rsa ]; then
+	eval $(ssh-agent)
+	ssh-add /.ssh/id_rsa
+
 echo "=> Detecting application"
 if [ ! -d /app ]; then
 	if [ ! -z "$GIT_REPO" ]; then
