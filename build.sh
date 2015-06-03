@@ -1,6 +1,13 @@
 #!/bin/bash
 set -e
 
+if [ -z "$DOCKER_VERSION" ]; then
+	echo deb http://get.docker.com/ubuntu docker main > /etc/apt/sources.list.d/docker.list
+	apt-key adv --keyserver pgp.mit.edu --recv-keys 36A1D7869245C8950F966E92D8576A8BA88D21E9
+	apt-get update
+	apt-get install -y lxc-docker-$DOCKER_VERSION
+fi
+
 if [ -S /var/run/docker.sock ]; then
 	echo "=> Detected unix socket at /var/run/docker.sock"
 	docker version > /dev/null 2>&1 || (echo "   Failed to connect to docker daemon at /var/run/docker.sock" && exit 1)
