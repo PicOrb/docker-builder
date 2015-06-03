@@ -35,10 +35,10 @@ else
 fi
 
 echo "=> Adding SSH key"
-if [ -f /.ssh/id_rsa ]; then
+if [ -f /root/.ssh/id_rsa ]; then
 	eval $(ssh-agent)
-	ssh-add /.ssh/id_rsa
-	ssh-keyscan github.com >> ~/.ssh/known_hosts
+	ssh-add /root/.ssh/id_rsa
+	ssh-keyscan github.com >> /root/.ssh/known_hosts
 fi
 
 echo "=> Detecting application"
